@@ -56,7 +56,7 @@ diff --git a/Cython/Compiler/ModuleNode.py b/Cython/Compiler/ModuleNode.py
 index 34f1b32..b09350b 100644
 --- a/Cython/Compiler/ModuleNode.py
 +++ b/Cython/Compiler/ModuleNode.py
-@@ -877,7 +877,9 @@ class ModuleNode(Nodes.Node, Nodes.BlockNode):
+@@ -899,7 +899,9 @@ class ModuleNode(Nodes.Node, Nodes.BlockNode):
          code.put_generated_by()
          if metadata:
              code.putln("/* BEGIN: Cython Metadata")

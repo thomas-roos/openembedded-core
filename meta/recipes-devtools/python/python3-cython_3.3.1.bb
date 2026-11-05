@@ -7,11 +7,17 @@ SECTION = "devel/python"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=61c3ee8961575861fa86c7e62bc9f69c"
 
-SRC_URI[sha256sum] = "d249c9022ab13286b17bd66f30609e800c5f95efeecb06168990c7a66cecde6c"
+SRC_URI[sha256sum] = "e0e45989e821bef6aa9ae15c7d583ab5e055f7406c4b3624e49e06d24e90375a"
 
 inherit pypi setuptools3 cython
 
 SRC_URI += "file://0001-Replace-not-predictable-build-path-prefix-with-hardc.patch"
+
+# Cython 3.3 races when it builds itself in parallel: setuptools runs
+# cythonize in threads and Cython keeps global state, which fails
+# intermittently (https://github.com/cython/cython/issues/7997, not fixed
+# in 3.3.1). Build serially until upstream fixes it.
+PARALLEL_MAKE = ""
 
 # No need to depend on self
 DEPENDS:remove = "python3-cython-native"
